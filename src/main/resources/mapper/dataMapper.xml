@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="com.seungjun.touchball.mapper.DbDataMapper">
+	
+	
+	<!-- 사용자 정보 DB -->
+	<insert id="addUserInfo" parameterType="com.seungjun.touchball.vo.UserInfoVO">
+		INSERT INTO user_info
+		VALUES (#{user_id}, #{account_type}, #{user_pw}, #{user_email}, #{sns_key}, now(), #{user_nickname})
+	</insert>
+
+	<select id="getUserInfo" parameterType="String"
+		resultType="com.seungjun.touchball.vo.UserInfoVO">
+		select * from 
+		user_info 
+		where 
+		user_id = #{user_id}
+	</select>
+	<!-- 사용자 정보 DB -->
+	
+	
+	<!-- 이지 랭킹 정보 DB -->
+	<insert id="addEasyRankInfo" parameterType="com.seungjun.touchball.vo.RankInfoVO">
+		INSERT INTO rank_easy (user_id, user_time, user_nickname) 
+		SELECT #{user_id}, #{user_time}, #{user_nickname}
+		WHERE EXISTS 
+		(SELECT * FROM user_info WHERE user_id=#{user_id})
+		ON DUPLICATE KEY UPDATE user_time=#{user_time};
+	</insert>
+
+	<select id="getEasyRankInfo" resultType="com.seungjun.touchball.vo.RankInfoVO">
+		SELECT user_id, user_time, user_nickname,
+		( @rank := @rank + 1 ) AS rank
+		
+		FROM rank_easy AS a,
+		( SELECT @rank := 0 ) AS b
+		
+		ORDER BY a.user_time asc
+	</select>
+	<!-- 이지 랭킹 정보 DB -->
+	
+	
+	<!-- 노말 랭킹 정보 DB -->
+	<insert id="addNormalRankInfo" parameterType="com.seungjun.touchball.vo.RankInfoVO">
+		INSERT INTO rank_normal (user_id, user_time, user_nickname) 
+		SELECT #{user_id}, #{user_time}, #{user_nickname}
+		WHERE EXISTS 
+		(SELECT * FROM user_info WHERE user_id=#{user_id})
+		ON DUPLICATE KEY UPDATE user_time=#{user_time};
+	</insert>
+
+	<select id="getNormalRankInfo" resultType="com.seungjun.touchball.vo.RankInfoVO">
+		SELECT user_id, user_time, user_nickname,
+		( @rank := @rank + 1 ) AS rank
+		
+		FROM rank_normal AS a,
+		( SELECT @rank := 0 ) AS b
+		
+		ORDER BY a.user_time asc
+	</select>
+	<!-- 노말 랭킹 정보 DB -->
+
+
+	<!-- 하드 랭킹 정보 DB -->
+	<insert id="addHardRankInfo" parameterType="com.seungjun.touchball.vo.RankInfoVO">
+		INSERT INTO rank_hard (user_id, user_time, user_nickname) 
+		SELECT #{user_id}, #{user_time}, #{user_nickname}
+		WHERE EXISTS 
+		(SELECT * FROM user_info WHERE user_id=#{user_id})
+		ON DUPLICATE KEY UPDATE user_time=#{user_time};	
+	</insert>
+	
+	<select id="getHardRankInfo" resultType="com.seungjun.touchball.vo.RankInfoVO">
+		SELECT user_id, user_time, user_nickname,
+		( @rank := @rank + 1 ) AS rank
+		
+		FROM rank_hard AS a,
+		( SELECT @rank := 0 ) AS b
+		
+		ORDER BY a.user_time asc
+	</select>
+	<!-- 하드 랭킹 정보 DB -->
+
+
+	<!-- 헬 랭킹 정보 DB -->
+	<insert id="addHellRankInfo" parameterType="com.seungjun.touchball.vo.RankInfoVO">
+		INSERT INTO rank_hell (user_id, user_time, user_nickname) 
+		SELECT #{user_id}, #{user_time}, #{user_nickname}
+		WHERE EXISTS 
+		(SELECT * FROM user_info WHERE user_id=#{user_id})
+		ON DUPLICATE KEY UPDATE user_time=#{user_time};
+	</insert>
+	
+	<select id="getHellRankInfo" resultType="com.seungjun.touchball.vo.RankInfoVO">
+		SELECT user_id, user_time, user_nickname,
+		( @rank := @rank + 1 ) AS rank
+		
+		FROM rank_hell AS a,
+		( SELECT @rank := 0 ) AS b
+		
+		ORDER BY a.user_time asc
+	</select>
+	<!-- 헬 랭킹 정보 DB -->
+	
+	
+	<!-- 개인 랭킹 정보 DB -->
+	<select id="getPersonRankInfo" resultType="com.seungjun.touchball.vo.RankInfoVO">
+		SELECT user_id, user_time, user_nickname, (@type := 'easy') AS type
+		FROM rank_easy AS a, ( SELECT @type := '') AS b
+		WHERE a.user_id = #{user_id}
+		
+		UNION
+		
+		SELECT user_id, user_time, user_nickname, (@type := 'normal') AS type
+		FROM rank_normal AS a, ( SELECT @type := '') AS b
+		WHERE a.user_id = #{user_id}
+		
+		UNION
+		
+		SELECT user_id, user_time, user_nickname, (@type := 'hard') AS type
+		FROM rank_hard AS a, ( SELECT @type := '') AS b
+		WHERE a.user_id = #{user_id}
+		
+		UNION
+		
+		SELECT user_id, user_time, user_nickname, (@type := 'hell') AS type
+		FROM rank_hell AS a, ( SELECT @type := '') AS b
+		WHERE a.user_id = #{user_id}
+	</select>
+	<!-- 개인 랭킹 정보 DB -->
+	
+</mapper>
