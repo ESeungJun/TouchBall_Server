@@ -1,5 +1,9 @@
 package com.seungjun.touchball.vo;
 
+/**
+ * @author SeungJun
+ *
+ */
 public class UserJsonVO {
 	
 	private boolean success = false;

@@ -1,18 +1,23 @@
 package com.seungjun.touchball.vo;
 
+
+/**
+ * @author SeungJun
+ *
+ */
 public class UserInfoVO {
 
-	// »ç¿ëÀÚ ¾ÆÀÌµð
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½
 	private String user_id = "";
-	// °èÁ¤ À¯Çü 
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	private String account_type = "";
-	// »ç¿ëÀÚ ºñ¹ø
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	private String user_pw ="";
-	// »ç¿ëÀÚ ÀÌ¸ÞÀÏ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½
 	private String user_email ="";
-	// sns ¶óÀÌºê·¯¸®¿¡¼­ ³Ñ°ÜÁØ Å° °ª 
+	// sns ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ°ï¿½ï¿½ï¿½ Å° ï¿½ï¿½ 
 	private String sns_key = "";
-	// »ç¿ëÀÚ ´Ð³×ÀÓ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½
 	private String user_nickname ="";
 	
 	public String getUser_id() {

@@ -8,10 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.seungjun.touchball.dao.rank.RankDAO;
 import com.seungjun.touchball.dao.userInfo.UserInfoDAO;
-import com.seungjun.touchball.dao.userInfo.UserInfoDAOImpl;
 import com.seungjun.touchball.vo.RankInfoVO;
 import com.seungjun.touchball.vo.UserInfoVO;
 
+
+/**
+ * @author SeungJun
+ *
+ */
 @Service("touchBallService")
 public class TouchBallServiceImpl implements TouchBallService{
 
@@ -23,6 +27,13 @@ public class TouchBallServiceImpl implements TouchBallService{
     private RankDAO rankDAO;
 
     //============================================================//
+
+	@Override
+	public void loginCheck(String user_id, String user_pw) throws Exception {
+		userInfoDAO.loginCheck(user_id, user_pw);
+	}
+
+
 	@Override
 	public void addUserInfo(UserInfoVO userInfo) throws Exception {
 		userInfoDAO.addUserInfo(userInfo);

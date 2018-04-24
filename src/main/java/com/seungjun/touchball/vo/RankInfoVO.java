@@ -1,16 +1,20 @@
 package com.seungjun.touchball.vo;
 
+/**
+ * @author SeungJun
+ *
+ */
 public class RankInfoVO {
 	
-	// ¼øÀ§
+	// ï¿½ï¿½ï¿½ï¿½
 	private int rank = 0;
-	// »ç¿ëÀÚ ¾ÆÀÌµð 
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ 
 	private String user_id = "";
-	// »ç¿ëÀÚ ±â·Ï 
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
 	private String user_time = "";
-	// »ç¿ëÀÚ ´Ð³×ÀÓ 
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð³ï¿½ï¿½ï¿½ 
 	private String user_nickname = "";
-	// ·©Å© Å¸ÀÔ
+	// ï¿½ï¿½Å© Å¸ï¿½ï¿½
 	private String type = "";
 	
 	

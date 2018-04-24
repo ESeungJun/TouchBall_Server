@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import com.seungjun.touchball.service.TouchBallService;
 import com.seungjun.touchball.vo.RankInfoVO;
 import com.seungjun.touchball.vo.RankJsonVO;
@@ -27,6 +25,34 @@ public class MainController {
 	
 	@Resource(name="touchBallService")
 	private TouchBallService service;
+	
+
+	@RequestMapping(value="/login", method= RequestMethod.POST)
+	public @ResponseBody UserJsonVO checkLogin(HttpServletRequest request) {
+
+		String user_id = ((String) request.getParameter("user_id"));
+		String user_pw = ((String) request.getParameter("user_pw"));
+		
+		UserJsonVO result = new UserJsonVO();
+
+		logger.debug("login check > " + user_id + " / " + user_pw);
+		
+		try {
+			
+			service.loginCheck(user_id, user_pw);
+
+			result.setSuccess(true);
+			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			result.setSuccess(false);
+			result.setMessage("ë¡œê·¸ì¸ ì‹¤íŒ¨. ì•„ì´ë”” ë° ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì•ˆí•˜ì„¸ìš”.");
+			
+		}
+		
+		return result;
+	}
 	
 	
 	@RequestMapping(value="/addUserInfo", method= RequestMethod.POST)
@@ -60,7 +86,7 @@ public class MainController {
 		catch (Exception e) {
 			e.printStackTrace();
 			result.setSuccess(false);
-			result.setMessage("¾ÆÀÌµğ »ı¼º¿¡ ½ÇÆĞ Çß½À´Ï´Ù.");
+			result.setMessage("ì•„ì´ë”” ìƒì„±ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.");
 			
 		}
 		
@@ -216,3 +242,4 @@ public class MainController {
 	}
 	
 }
+

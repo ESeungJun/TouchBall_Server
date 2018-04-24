@@ -2,6 +2,10 @@ package com.seungjun.touchball.vo;
 
 import java.util.ArrayList;
 
+/**
+ * @author SeungJun
+ *
+ */
 public class RankJsonVO {
 	
 	private boolean success = false;
