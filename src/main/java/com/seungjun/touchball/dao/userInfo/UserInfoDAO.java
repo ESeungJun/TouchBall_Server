@@ -8,7 +8,7 @@ public interface UserInfoDAO {
 
 	public void addUserInfo(UserInfoVO userInfo) throws Exception;
 
-	public void loginCheck(String user_id, String user_pw) throws Exception;
+	public UserInfoVO loginCheck(String user_id, String user_pw) throws Exception;
 
 	
 }

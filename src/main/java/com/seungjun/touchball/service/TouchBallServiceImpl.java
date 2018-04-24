@@ -29,8 +29,8 @@ public class TouchBallServiceImpl implements TouchBallService{
     //============================================================//
 
 	@Override
-	public void loginCheck(String user_id, String user_pw) throws Exception {
-		userInfoDAO.loginCheck(user_id, user_pw);
+	public UserInfoVO loginCheck(String user_id, String user_pw) throws Exception {
+		return userInfoDAO.loginCheck(user_id, user_pw);
 	}
 
 

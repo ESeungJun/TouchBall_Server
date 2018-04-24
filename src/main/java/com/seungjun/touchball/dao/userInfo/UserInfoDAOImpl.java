@@ -32,8 +32,14 @@ public class UserInfoDAOImpl implements UserInfoDAO{
 
 
 	@Override
-	public void loginCheck(String user_id, String user_pw) throws Exception {
-		dm.loginCheck(user_id, user_pw);
+	public UserInfoVO loginCheck(String user_id, String user_pw) throws Exception {
+		
+		UserInfoVO user_info = null;
+		
+		user_info = dm.loginCheck(user_id, user_pw);
+		
+		return user_info;
+	
 	}
 
 	

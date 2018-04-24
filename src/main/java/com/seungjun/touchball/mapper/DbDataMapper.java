@@ -2,13 +2,15 @@ package com.seungjun.touchball.mapper;
 
 import java.util.ArrayList;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.seungjun.touchball.vo.RankInfoVO;
 import com.seungjun.touchball.vo.UserInfoVO;
 
 public interface DbDataMapper {
 
     //============================================================//
-	public void loginCheck(String user_id, String user_pw) throws Exception;
+	public UserInfoVO loginCheck(@Param("user_id") String user_id, @Param("user_pw") String user_pw) throws Exception;
 	public void addUserInfo(UserInfoVO userInfo) throws Exception;
 	public UserInfoVO getUserInfo(String user_id) throws Exception;
     //============================================================//

@@ -39,10 +39,16 @@ public class MainController {
 		
 		try {
 			
-			service.loginCheck(user_id, user_pw);
-
-			result.setSuccess(true);
+			UserInfoVO info = service.loginCheck(user_id, user_pw);
 			
+			if(info == null) {
+				result.setSuccess(false);		
+				result.setMessage("로그인 실패. 아이디 및 비밀번호를 확안하세요.");
+			}else {
+				result.setSuccess(true);
+				result.setMessage("로그인 성공.");
+			}
+
 		}
 		catch (Exception e) {
 			e.printStackTrace();

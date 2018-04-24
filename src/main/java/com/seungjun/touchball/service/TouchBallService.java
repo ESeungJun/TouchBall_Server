@@ -13,7 +13,7 @@ import com.seungjun.touchball.vo.UserInfoVO;
 public interface TouchBallService {
 
     //============================================================//
-	public void loginCheck(String user_id, String user_pw) throws Exception;
+	public UserInfoVO loginCheck(String user_id, String user_pw) throws Exception;
 	
 	public void addUserInfo(UserInfoVO userInfo) throws Exception;
 	public UserInfoVO getUserInfo(String user_id) throws Exception;

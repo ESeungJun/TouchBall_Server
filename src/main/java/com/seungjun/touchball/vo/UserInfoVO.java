@@ -7,17 +7,17 @@ package com.seungjun.touchball.vo;
  */
 public class UserInfoVO {
 
-	// ����� ���̵�
+
 	private String user_id = "";
-	// ���� ���� 
+
 	private String account_type = "";
-	// ����� ���
+
 	private String user_pw ="";
-	// ����� �̸���
+
 	private String user_email ="";
-	// sns ���̺귯������ �Ѱ��� Ű �� 
+
 	private String sns_key = "";
-	// ����� �г���
+
 	private String user_nickname ="";
 	
 	public String getUser_id() {

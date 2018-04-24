@@ -7,6 +7,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<!-- 사용자 정보 DB -->
+	
+	<select id="loginCheck" parameterType="String" 
+		resultType="com.seungjun.touchball.vo.UserInfoVO">
+		SELECT * FROM 
+		user_info
+		WHERE 
+		user_id = #{user_id} AND user_pw = #{user_pw}
+	</select>
+	
 	<insert id="addUserInfo" parameterType="com.seungjun.touchball.vo.UserInfoVO">
 		INSERT INTO user_info
 		VALUES (#{user_id}, #{account_type}, #{user_pw}, #{user_email}, #{sns_key}, now(), #{user_nickname})
